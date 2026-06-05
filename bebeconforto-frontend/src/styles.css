@@ -1,8 +1,7 @@
 /* Importando a fonte Poppins e a biblioteca Mingcute Icons */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/mingcute_icon@2.0.0/font/Mingcute.css');
-
-
+@import 'ngx-toastr/toastr.css';
 /* Variáveis de cores para facilitar o nosso uso em todo o projeto */
 :root {
   --roxo-principal: #6b1fad;
@@ -47,7 +46,7 @@ a:hover [class^="mgc_"]::before, a:hover [class^="mgc_"] {
   color: var(--amarelo-hover) !important;
 }
 /* Importação necessária para o Toastr funcionar */
-@import 'ngx-toastr/toastr.css';
+
 
 /* Customização dos Toasts */
 .toast-success { background-color: #6b1fad !important; border-radius: 12px; }
