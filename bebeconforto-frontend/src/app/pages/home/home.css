@@ -1,0 +1,395 @@
+.home-container {
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Espaçamento entre as secções da home */
+}
+
+/* --- Barra de Categorias --- */
+.categorias-bar {
+  /* Fundo #d1dfff com 38% de opacidade */
+  background-color: rgba(209, 223, 255, 0.38);
+  border-radius: 50px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.categoria-btn {
+  background: transparent;
+  border: none;
+  color: var(--roxo-principal);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.categoria-btn:hover, .categoria-btn.active {
+  color: var(--amarelo-hover);
+}
+
+.categoria-btn i {
+  font-size: 18px;
+}
+
+/* --- Carrossel --- */
+.carrossel-container {
+  position: relative;
+  border: 1px solid #efdaff; /* Borda fininha */
+  border-radius: 30px;
+  width: 1300px;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.slide-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Empurra o botão para a parte de baixo */
+  padding-bottom: 50px; /* Dá um respiro para o botão não ficar colado ao fundo */
+}
+
+.slide-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Muda para 'contain' se quiseres que a imagem apareça toda sem cortar, 
+     ou mantém 'cover' mas garante que a imagem original tem proporção de banner */
+  object-fit: fit; 
+  object-position: center; /* Garante que o centro da imagem está sempre visível */
+  z-index: -1;
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--roxo-principal);
+  font-size: 40px;
+  cursor: pointer;
+  transition: color 0.3s;
+  z-index: 10; /* Garante que a seta fica sempre clicável acima da imagem */
+}
+
+.nav-arrow.left { left: 20px; }
+.nav-arrow.right { right: 20px; }
+
+.nav-arrow:hover {
+  color: var(--amarelo-hover);
+}
+
+.btn-compre-agora {
+  background-color: var(--roxo-principal);
+  color: var(--lilas-botao);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.3s ease;
+}
+
+.btn-compre-agora:hover {
+  opacity: 0.9;
+}
+
+.carrossel-dots {
+  position: absolute;
+  bottom: 15px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--roxo-principal);
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: var(--amarelo-hover);
+}
+
+/* --- Títulos das Secções --- */
+.titulo-secao {
+  /* Fundo #d1dfff com 38% de opacidade */
+  background-color: rgba(209, 223, 255, 0.38);
+  color: var(--roxo-principal);
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.secao-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.highlight-titulo {
+  align-self: flex-start; /* Alinha o título "Destaques" à esquerda */
+  margin-left: 0;
+}
+
+/* --- Coleções --- */
+.colecoes-grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  width: 100%;
+}
+
+.colecao-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--roxo-principal);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  font-size: 18px; /* Aumentei um pouco o texto para acompanhar o tamanho do círculo */
+  font-weight: 600;
+}
+
+
+.img-redonda {
+  width: 200px;    /* Aumentado de 150px para 200px */
+  height: 200px;   /* Aumentado de 150px para 200px */
+  border-radius: 50%;
+  object-fit: cover; 
+  margin-bottom: 20px; /* Aumentado ligeiramente para dar mais espaço */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border: 2px solid transparent; 
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+
+
+.colecao-item:hover .img-redonda {
+  transform: scale(1.05); /* Pequeno zoom acolhedor ao passar o rato */
+  border-color: var(--roxo-claro);
+}
+
+.colecao-item:hover {
+  color: var(--amarelo-hover);
+}
+
+/* --- Grid de Produtos --- */
+.produtos-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os cards passem para a linha de baixo */
+  gap: 20px;
+  justify-content: flex-start; /* Alinha à esquerda */
+  width: 100%;
+  padding: 20px 0;
+}
+
+.produto-card {
+  background-color: #fff;
+  border: 1px solid #efdaff;
+  border-radius: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Define uma largura fixa para cada card para que caibam 4 ou 5 por linha */
+  flex: 0 0 calc(20% - 20px); 
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.produto-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--roxo-principal);
+}
+
+.produto-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.btn-favorito {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: var(--texto-padrao);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.btn-favorito:hover {
+  color: var(--amarelo-hover);
+}
+
+
+
+.produto-titulo {
+  color: var(--texto-padrao);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.produto-preco {
+  color: var(--roxo-principal);
+  font-size: 18px;
+  font-weight: 700;
+}
+/* =========================================
+   ESTILOS DA TELA DE BUSCA (FIGMA)
+========================================== */
+
+.resultado-busca-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.resultado-textos h2 {
+  font-size: 1.5rem;
+  color: var(--roxo-principal, #6b1fad);
+  margin: 0 0 5px 0;
+  font-weight: 700;
+}
+
+.resultado-textos .quantidade-encontrada {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.resultado-acoes {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.ordenar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.ordenar-label {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.select-ordenar {
+  padding: 8px 15px;
+  border: 1px solid rgba(107, 31, 173, 0.2);
+  border-radius: 8px;
+  background: white;
+  color: var(--roxo-principal, #6b1fad);
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-limpar-icone {
+  background: transparent;
+  border: none;
+  color: #a0a0a0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-limpar-icone:hover {
+  color: var(--roxo-principal, #6b1fad);
+}
+
+/* --- Layout Dividido (Grid) --- */
+.layout-busca-duplo {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* 250px pra sidebar, o resto pro grid */
+  gap: 30px;
+  align-items: start;
+}
+
+/* --- A Sidebar de Filtros --- */
+.sidebar-filtros {
+  background-color: #e6eeff; /* Fundo pastel suave da imagem */
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid rgba(209, 223, 255, 0.8);
+}
+
+.filtro-grupo h4 {
+  color: var(--roxo-principal, #6b1fad);
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  color: #555;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--roxo-principal, #6b1fad); /* Deixa a caixinha roxa */
+  cursor: pointer;
+}
+
+.filtro-divisor {
+  border: none;
+  border-top: 1px solid rgba(107, 31, 173, 0.15);
+  margin: 25px 0;
+}
+
+.slider-preco {
+  width: 100%;
+  accent-color: var(--roxo-principal, #6b1fad);
+}
+
+/* Responsividade: no celular, a sidebar vai pra cima */
+@media (max-width: 768px) {
+  .layout-busca-duplo {
+    grid-template-columns: 1fr;
+  }
+}

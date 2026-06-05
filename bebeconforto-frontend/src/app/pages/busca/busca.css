@@ -1,0 +1,225 @@
+.busca-container {
+  padding: 30px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* --- Cabeçalho da Busca --- */
+.busca-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.busca-titulos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.titulo-resultados {
+  color: var(--roxo-principal); /* #6b1fad */
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitulo-resultados {
+  color: var(--texto-padrao); /* #6d6474 */
+  font-size: 16px;
+}
+
+/* Dropdown de Ordenar */
+.busca-ordenar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  color: var(--roxo-principal);
+  font-size: 14px;
+}
+
+.select-wrapper {
+  background-color: var(--fundo-pesquisa); /* #f1f5ff */
+  border: 1px solid var(--roxo-claro);     /* #d1dfff */
+  border-radius: 12px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.icone-select {
+  position: absolute;
+  left: 15px;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.select-ordenar {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--roxo-principal);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  padding-left: 25px; /* Espaço para o ícone */
+  appearance: none; /* Remove seta padrão do navegador */
+}
+
+/* --- Layout Principal --- */
+.busca-conteudo {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* --- Sidebar (Filtros) --- */
+.busca-filtros {
+  flex: 0 0 300px;
+  background-color: rgba(209, 223, 255, 0.81); /* Fundo #d1dfff com 81% opacidade */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filtro-grupo {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.filtro-titulo {
+  color: var(--roxo-principal);
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+/* Checkbox Customizado (#f1f5ff fundo, #6b1fad outline) */
+.filtro-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  color: var(--texto-padrao);
+  font-size: 16px;
+  position: relative;
+}
+
+.filtro-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  height: 26px;
+  width: 26px;
+  background-color: var(--fundo-pesquisa);
+  border: 1px solid var(--roxo-principal);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+/* Marca de "Check" simulada quando selecionado */
+.filtro-checkbox input:checked ~ .checkmark::after {
+  content: "";
+  width: 6px;
+  height: 12px;
+  border: solid var(--roxo-principal);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
+}
+
+.filtro-divisor {
+  border: 0;
+  border-top: 2px solid var(--roxo-claro);
+  margin: 0;
+}
+
+/* Slider de Preço */
+.range-slider {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.range-slider .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: var(--roxo-principal);
+  border-radius: 5px;
+  outline: none;
+}
+
+.range-slider .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--fundo-pesquisa);
+  border: 4px solid var(--roxo-principal);
+  cursor: pointer;
+}
+
+/* --- Grid de Produtos --- */
+.busca-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.busca-card {
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.busca-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.card-titulo {
+  color: var(--texto-padrao);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 15px 0;
+  min-height: 44px; /* Mantém o alinhamento mesmo com títulos curtos/longos */
+}
+
+.card-preco {
+  color: var(--roxo-principal);
+  font-size: 24px;
+  font-weight: 700;
+}

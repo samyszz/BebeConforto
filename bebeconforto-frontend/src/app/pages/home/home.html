@@ -1,0 +1,134 @@
+<main class="home-container">
+
+  @if (termoBusca === '') {
+    
+    <nav class="categorias-bar">
+      <button class="categoria-btn" [class.active]="categoriaAtiva === 'Todas as categorias'" (click)="filtrarCategoria('Todas as categorias')"><i class="mgc_filter_3_line"></i> Todas as categorias</button>
+      <button class="categoria-btn" [class.active]="categoriaAtiva === 'Passeio'" (click)="filtrarCategoria('Passeio')">Passeio</button>
+      <button class="categoria-btn" [class.active]="categoriaAtiva === 'Roupinhas'" (click)="filtrarCategoria('Roupinhas')">Roupinhas</button>
+      <button class="categoria-btn" [class.active]="categoriaAtiva === 'Alimentação'" (click)="filtrarCategoria('Alimentação')">Alimentação</button>
+      <button class="categoria-btn" [class.active]="categoriaAtiva === 'Higiene'" (click)="filtrarCategoria('Higiene')">Higiene</button>
+    </nav>
+
+    <section class="carrossel-container">
+      <button class="nav-arrow left" (click)="slideAnterior()"><i class="mgc_left_line"></i></button>
+      <div class="slide-wrapper">
+        <img [src]="'assets/' + slides[currentIndex]" alt="Slide" class="slide-img">
+        <button class="btn-compre-agora">Compre agora</button>
+      </div>
+      <button class="nav-arrow right" (click)="proximoSlide()"><i class="mgc_right_line"></i></button>
+    </section>
+
+    <section class="secao-container">
+      <div class="titulo-secao">
+        <h3>Nossas coleções</h3>
+      </div>
+      
+      <div class="colecoes-grid">
+        <div class="colecao-item" (click)="irParaCategoria('Recém nascidos')">
+          <img src="assets/colecao_rn.png" alt="Recém nascidos" class="img-redonda">
+          <span>Recém nascidos</span>
+        </div>
+        
+        <div class="colecao-item" (click)="irParaCategoria('Bebês')">
+          <img src="assets/colecao_bbs.png" alt="Bebês" class="img-redonda">
+          <span>Bebês</span>
+        </div>
+        
+        <div class="colecao-item" (click)="irParaCategoria('Meninas')">
+          <img src="assets/colecao_meninas.png" alt="Meninas" class="img-redonda">
+          <span>Meninas</span>
+        </div>
+        
+        <div class="colecao-item" (click)="irParaCategoria('Meninos')">
+          <img src="assets/colecao_meninos.png" alt="Meninos" class="img-redonda">
+          <span>Meninos</span>
+        </div>
+      </div>
+    </section>
+    
+    <div class="titulo-secao highlight-titulo">
+      <h3>Destaques para você</h3>
+    </div>
+
+    <div class="produtos-grid">
+      @for (p of produtosFiltrados; track $index) {
+        <div class="produto-card" [routerLink]="['/produto', p.id]" style="cursor: pointer;">
+          <button class="btn-favorito"><i class="mgc_star_line"></i></button>
+          <img [src]="p.imagemUrl" [alt]="p.nome" class="produto-img" style="object-fit: cover;">
+          <h4 class="produto-titulo">{{ p.nome }}</h4>
+          <span class="produto-preco">R$ {{ p.preco.toFixed(2) }}</span>
+        </div>
+      }
+    </div>
+
+  } @else {
+    
+    <div class="resultado-busca-topo">
+      <div class="resultado-textos">
+        <h2>Resultados para <span class="destaque">"{{ termoBusca }}"</span></h2>
+        <p class="quantidade-encontrada">{{ produtosFiltrados.length }} produtos encontrados</p>
+      </div>
+      
+      <div class="resultado-acoes">
+        <div class="ordenar-wrapper">
+          <span class="ordenar-label">Ordenar por:</span>
+          <select class="select-ordenar" [(ngModel)]="ordenacaoAtual" (change)="aplicarFiltros()">
+            <option value="Relevância">Relevância</option>
+            <option value="Menor Preço">Menor Preço</option>
+            <option value="Maior Preço">Maior Preço</option>
+          </select>
+        </div>
+        <button class="btn-limpar-icone" (click)="termoBusca = ''; categoriasSelecionadas = []; aplicarFiltros()">
+          <i class="mgc_close_line"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="layout-busca-duplo">
+      
+      <aside class="sidebar-filtros">
+        <div class="filtro-grupo">
+          <h4>Categorias</h4>
+          
+          @for (cat of categoriasSidebar; track $index) {
+            @if (contarPorCategoria(cat) > 0) {
+              <label class="checkbox-label">
+                <input type="checkbox" (change)="atualizarCheckbox(cat, $event)"> 
+                {{ cat }} ({{ contarPorCategoria(cat) }})
+              </label>
+            }
+          }
+        </div>
+        
+        <hr class="filtro-divisor">
+        
+        <div class="filtro-grupo">
+          <h4>Preço</h4>
+          <input type="range" min="0" max="1000" class="slider-preco">
+        </div>
+      </aside>
+
+      <section class="grid-resultados">
+        <div class="produtos-grid">
+          @for (p of produtosFiltrados; track $index) {
+            
+            <div class="produto-card" [routerLink]="['/produto', p.id]" style="cursor: pointer;">
+              <button class="btn-favorito"><i class="mgc_star_line"></i></button>
+              <img [src]="p.imagemUrl" [alt]="p.nome" class="produto-img" style="object-fit: cover;">
+              <h4 class="produto-titulo">{{ p.nome }}</h4>
+              <span class="produto-preco">R$ {{ p.preco.toFixed(2) }}</span>
+            </div>
+
+          } @empty {
+            <div class="busca-vazia">
+              <i class="mgc_ghost_line icone-vazio" style="font-size: 3rem; color: #d8c4e8;"></i>
+              <p style="color: var(--roxo-principal);">Poxa, não encontramos nada para "{{ termoBusca }}".</p>
+            </div>
+          }
+        </div>
+      </section>
+
+    </div>
+  }
+</main>

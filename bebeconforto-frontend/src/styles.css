@@ -1,0 +1,58 @@
+/* Importando a fonte Poppins e a biblioteca Mingcute Icons */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/mingcute_icon@2.0.0/font/Mingcute.css');
+
+
+/* Variáveis de cores para facilitar o nosso uso em todo o projeto */
+:root {
+  --roxo-principal: #6b1fad;
+  --roxo-claro: #d1dfff;
+  --fundo-site: #f0f7ff;
+  --fundo-pesquisa: #f1f5ff;
+  --amarelo-hover: #896ca9;
+  --texto-padrao: #6d6474;
+  --lilas-botao: #f4e7ff;
+}
+
+/* Aplicando o fundo e a fonte em todo o site */
+body {
+  background-color: var(--fundo-site);
+  font-family: 'Poppins', sans-serif;
+  color: var(--texto-padrao);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Força a cor roxa no próprio elemento e no desenho do ícone (::before) */
+[class^="mgc_"], [class*=" mgc_"],
+[class^="mgc_"]::before, [class*=" mgc_"]::before {
+  color: var(--roxo-principal) !important;
+  transition: color 0.3s ease;
+}
+
+/* Garante o amarelo no hover */
+button:hover [class^="mgc_"]::before, button:hover [class^="mgc_"],
+a:hover [class^="mgc_"]::before, a:hover [class^="mgc_"] {
+  color: var(--amarelo-hover) !important; 
+}
+
+/* Exceção 1: O ícone dentro do botão do Slider (tem de ser branco) */
+.btn-auth [class^="mgc_"]::before, .btn-auth [class^="mgc_"] {
+  color: #ffffff !important;
+}
+
+/* Exceção 2: As estrelas de avaliação (têm de ser amarelas) */
+.estrelas .mgc_star_fill::before, .estrelas .mgc_star_fill {
+  color: var(--amarelo-hover) !important;
+}
+/* Importação necessária para o Toastr funcionar */
+@import 'ngx-toastr/toastr.css';
+
+/* Customização dos Toasts */
+.toast-success { background-color: #6b1fad !important; border-radius: 12px; }
+.toast-error { background-color: #ef4444 !important; border-radius: 12px; }
+.toast-container .ngx-toastr {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif;
+}

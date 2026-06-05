@@ -1,0 +1,87 @@
+/* Container principal da Header */
+.header-container {
+  /* Cor #d1dfff com 59% de opacidade */
+  background-color: rgba(209, 223, 255, 0.59);
+  /* Efeito de desfoque sutil no fundo transparente (glassmorphism) */
+  backdrop-filter: blur(8px); 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  color: var(--roxo-principal);
+}
+
+/* Área da Logo */
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px; /* Ajuste conforme o tamanho da sua logo */
+}
+
+.search-bar {
+  /* Cor #f1f5ff com 81% de opacidade */
+  background-color: rgba(241, 245, 255, 0.81);
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 15px; /* Bordas arredondadas */
+  width: 40%;
+  border: 1px solid rgba(209, 223, 255, 0.5); /* Borda muito sutil para destacar */
+}
+
+.search-icon {
+  font-size: 20px;
+  color: var(--roxo-principal);
+  margin-right: 10px;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+  color: var(--roxo-principal);
+  font-size: 14px;
+}
+
+.search-input::placeholder {
+  color: rgba(107, 31, 173, 0.6); /* Placeholder com um pouco de transparência */
+}
+
+/* Área de Botões (Login e Carrinho) */
+.actions-area {
+  display: flex;
+  gap: 30px;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  text-decoration: none !important;
+  color: inherit; /* Mantém a cor original */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-family: inherit;
+}
+
+.action-btn i {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.action-btn span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Efeito ao passar o mouse */
+.action-btn:hover {
+  color: var(--amarelo-hover);
+}

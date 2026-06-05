@@ -1,0 +1,71 @@
+<main class="auth-page-wrapper">
+  
+  <div class="auth-container" [class.right-panel-active]="modo === 'cadastro'">
+    
+    <div class="form-container sign-up-container">
+      <div class="auth-form">
+        <h1>Criar Conta</h1>
+        <div class="input-wrapper">
+          <i class="mgc_user_3_line input-icon"></i>
+          <input [(ngModel)]="dados.nome" placeholder="Nome completo">
+        </div>
+        <div class="input-wrapper">
+          <i class="mgc_mail_line input-icon"></i>
+          <input [(ngModel)]="dados.email" placeholder="E-mail">
+        </div>
+        <div class="input-wrapper">
+          <i class="mgc_lock_line input-icon"></i>
+          <input [(ngModel)]="dados.senha" type="password" placeholder="Senha">
+        </div>
+        <button class="btn-auth" (click)="processar()">Cadastrar</button>
+      </div>
+    </div>
+
+    <div class="form-container sign-in-container">
+      <div class="auth-form">
+        <h1>Entrar</h1>
+        <div class="input-wrapper">
+          <i class="mgc_mail_line input-icon"></i>
+          <input [(ngModel)]="dados.email" placeholder="E-mail">
+        </div>
+        <div class="input-wrapper">
+          <i class="mgc_lock_line input-icon"></i>
+          <input [(ngModel)]="dados.senha" type="password" placeholder="Senha">
+        </div>
+        <div class="esqueci-senha-area">
+          <span class="clique-aqui" (click)="alternarModo('recuperar')" style="cursor: pointer;">Esqueci minha senha</span>
+        </div>
+        <button class="btn-auth" (click)="processar()">Entrar</button>
+      </div>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h2 class="overlay-titulo">Olá, futuro(a) cliente!</h2>
+          <p class="recuperar-dica">Crie sua conta para aproveitar nossas ofertas.</p>
+          <button class="btn-auth" (click)="alternarModo('cadastro')">Cadastre-se</button>
+        </div>
+        <div class="overlay-panel overlay-left">
+          <h2 class="overlay-titulo">Bem-vindo de volta!</h2>
+          <p class="recuperar-dica">Já possui uma conta? Faça login abaixo.</p>
+          <button class="btn-auth" (click)="alternarModo('login')">Entrar</button>
+        </div>
+      </div>
+    </div>
+
+    @if (modo === 'recuperar') {
+      <div class="auth-form" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 200; background: white; border-radius: 40px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <h1>Recuperar Senha</h1>
+        <p class="recuperar-dica" style="margin-bottom: 20px;">Digite seu e-mail para redefinir.</p>
+        <div class="input-wrapper" style="max-width: 300px;">
+          <i class="mgc_mail_line input-icon"></i>
+          <input [(ngModel)]="dados.email" placeholder="Seu e-mail cadastrado">
+        </div>
+        <button class="btn-auth" (click)="processar()">Enviar E-mail</button>
+        <button class="btn-auth" style="background: transparent; color: var(--roxo-principal); margin-top: 15px;" (click)="alternarModo('login')">Voltar ao Login</button>
+      </div>
+    }
+
+  </div>
+</main>
