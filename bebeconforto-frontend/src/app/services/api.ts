@@ -6,13 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class Api {
-  private baseUrl = 'http://localhost:9090/api';
+  private apiUrl = 'https://bebeconforto-production.up.railway.app/api';
 
   constructor(private http: HttpClient) { }
 
   // Verifique se o nome é exatamente este
   getVitrine(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/produtos`);
+    return this.http.get<any[]>(`${this.apiUrl}/produtos`);
 
   }
 // Busca apenas um produto específico pelo ID dele
