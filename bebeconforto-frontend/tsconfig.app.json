@@ -6,9 +6,10 @@
     "rootDir": ".",
     "types": []
   },
-  "include": [
-    "src/**/*.ts"
-  ],
+ "include": [
+  "src/**/*.d.ts",
+  "src/main.ts"
+],
   "exclude": [
     "src/**/*.spec.ts"
   ]
