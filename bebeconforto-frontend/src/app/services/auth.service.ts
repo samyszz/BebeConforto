@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:9090/api/auth';
+  private baseUrl = 'https://bebeconforto-production.up.railway.app/api/auth';
 
+  
   constructor(private http: HttpClient) {}
 
   login(credenciais: any): Observable<any> {
