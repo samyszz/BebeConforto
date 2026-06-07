@@ -11,6 +11,10 @@ import { Footer } from './components/footer/footer'; // Footer descomentado!
   standalone: true,
   // Certifique-se de listar apenas os nomes que importou acima
   imports: [RouterOutlet, Header, Footer], 
-  template: `./app.html`
+  template: `
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  `
 })
 export class App { }
