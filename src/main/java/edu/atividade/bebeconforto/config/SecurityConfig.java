@@ -17,20 +17,21 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class SecurityConfig {
 
-  @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource())) 
-            .csrf(csrf -> csrf.disable()) 
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll() 
-                .requestMatchers("/api/produtos/**").permitAll() 
-                // --- ADICIONE ESTA LINHA ABAIXO PARA LIBERAR O SWAGGER ---
-                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .anyRequest().authenticated()
-            );
-        return http.build();
-    }
+ @Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .cors(cors -> cors.configurationSource(request -> {
+            var corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
+            corsConfiguration.setAllowedOrigins(java.util.List.of("https://bebe-conforto.vercel.app")); // URL da Vercel
+            corsConfiguration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+            corsConfiguration.setAllowedHeaders(java.util.List.of("*"));
+            corsConfiguration.setAllowCredentials(true);
+            return corsConfiguration;
+        }))
+        .csrf(csrf -> csrf.disable()) // Desabilita CSRF para permitir POST/PUT
+        .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); // Ajuste conforme sua regra
+    return http.build();
+}
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
