@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/mingcute_icon@2.0.0/font/Mingcute.css');
 @import "./assets/toastr.css";
-/* Variáveis de cores para facilitar o nosso uso em todo o projeto */
+
+/* Variáveis de cores para um design acolhedor e profissional */
 :root {
   --roxo-principal: #6b1fad;
   --roxo-claro: #d1dfff;
@@ -23,34 +24,46 @@ body {
   box-sizing: border-box;
 }
 
-/* Força a cor roxa no próprio elemento e no desenho do ícone (::before) */
+/* ========================================================
+   CONTROLE INTELIGENTE DOS ÍCONES (CLARO VS ESCURO)
+======================================================== */
+
+/* 1. REGRA GERAL (Fundos Claros): Ícones ficam na cor #6b1fad */
 [class^="mgc_"], [class*=" mgc_"],
 [class^="mgc_"]::before, [class*=" mgc_"]::before {
   color: var(--roxo-principal) !important;
   transition: color 0.3s ease;
 }
 
-/* Garante o amarelo no hover */
+/* 2. EXCEÇÃO (Fundos Escuros): Ícones ficam na cor #f4e7ff */
+/* Mapeia o botão "Ver Mais" (que tem background via style), botões de auth, compre agora e Toasts */
+.btn-auth [class^="mgc_"], .btn-auth [class^="mgc_"]::before,
+.btn-compre-agora [class^="mgc_"], .btn-compre-agora [class^="mgc_"]::before,
+button[style*="background-color"] [class^="mgc_"], 
+button[style*="background-color"] [class^="mgc_"]::before,
+.toast-success [class^="mgc_"], .toast-success [class^="mgc_"]::before,
+.toast-error [class^="mgc_"], .toast-error [class^="mgc_"]::before {
+  color: var(--lilas-botao) !important;
+}
+
+/* ========================================================
+   HOVERS E DETALHES
+======================================================== */
+
+/* Garante o amarelo suave no hover para elementos interativos */
 button:hover [class^="mgc_"]::before, button:hover [class^="mgc_"],
 a:hover [class^="mgc_"]::before, a:hover [class^="mgc_"] {
   color: var(--amarelo-hover) !important; 
 }
 
-/* Exceção 1: O ícone dentro do botão do Slider (tem de ser branco) */
-.btn-auth [class^="mgc_"]::before, .btn-auth [class^="mgc_"] {
-  color: #ffffff !important;
-}
-
-/* Exceção 2: As estrelas de avaliação (têm de ser amarelas) */
+/* As estrelas de avaliação devem ser sempre amarelas */
 .estrelas .mgc_star_fill::before, .estrelas .mgc_star_fill {
   color: var(--amarelo-hover) !important;
 }
-/* Importação necessária para o Toastr funcionar */
-
 
 /* Customização dos Toasts */
-.toast-success { background-color: #6b1fad !important; border-radius: 12px; }
-.toast-error { background-color: #ef4444 !important; border-radius: 12px; }
+.toast-success { background-color: #6b1fad !important; border-radius: 12px; color: var(--lilas-botao) !important; }
+.toast-error { background-color: #ef4444 !important; border-radius: 12px; color: var(--lilas-botao) !important; }
 .toast-container .ngx-toastr {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   font-family: 'Poppins', sans-serif;
