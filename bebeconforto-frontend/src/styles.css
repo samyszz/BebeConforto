@@ -14,7 +14,6 @@
   --lilas-botao: #f4e7ff;
 }
 
-/* Aplicando o fundo e a fonte em todo o site */
 body {
   background-color: var(--fundo-site);
   font-family: 'Poppins', sans-serif;
@@ -25,45 +24,42 @@ body {
 }
 
 /* ========================================================
-   CONTROLE INTELIGENTE DOS ÍCONES (CLARO VS ESCURO)
+   CONTROLE DOS ÍCONES (A MÁGICA DA HERANÇA)
 ======================================================== */
-
-/* 1. REGRA GERAL (Fundos Claros): Ícones ficam na cor #6b1fad */
+/* O color: inherit faz com que o ícone copie a cor do texto do elemento pai.
+   Isso resolve o problema de ícones pretos em botões lilás ou roxos. */
 [class^="mgc_"], [class*=" mgc_"],
 [class^="mgc_"]::before, [class*=" mgc_"]::before {
-  color: var(--roxo-principal) !important;
+  color: inherit !important;
   transition: color 0.3s ease;
 }
 
-/* 2. EXCEÇÃO (Fundos Escuros): Ícones ficam na cor #f4e7ff */
-/* Mapeia o botão "Ver Mais" (que tem background via style), botões de auth, compre agora e Toasts */
-.btn-auth [class^="mgc_"], .btn-auth [class^="mgc_"]::before,
-.btn-compre-agora [class^="mgc_"], .btn-compre-agora [class^="mgc_"]::before,
-button[style*="background-color"] [class^="mgc_"], 
-button[style*="background-color"] [class^="mgc_"]::before,
-.toast-success [class^="mgc_"], .toast-success [class^="mgc_"]::before,
-.toast-error [class^="mgc_"], .toast-error [class^="mgc_"]::before {
-  color: var(--lilas-botao) !important;
+/* Garante que o hover funcione para o ícone junto com o texto */
+button:hover [class^="mgc_"], 
+button:hover [class^="mgc_"]::before,
+a:hover [class^="mgc_"], 
+a:hover [class^="mgc_"]::before {
+  color: inherit !important;
 }
 
-/* ========================================================
-   HOVERS E DETALHES
-======================================================== */
-
-/* Garante o amarelo suave no hover para elementos interativos */
-button:hover [class^="mgc_"]::before, button:hover [class^="mgc_"],
-a:hover [class^="mgc_"]::before, a:hover [class^="mgc_"] {
-  color: var(--amarelo-hover) !important; 
-}
-
-/* As estrelas de avaliação devem ser sempre amarelas */
+/* Exceção: As estrelas de avaliação (sempre amarelas) */
 .estrelas .mgc_star_fill::before, .estrelas .mgc_star_fill {
   color: var(--amarelo-hover) !important;
 }
 
-/* Customização dos Toasts */
-.toast-success { background-color: #6b1fad !important; border-radius: 12px; color: var(--lilas-botao) !important; }
-.toast-error { background-color: #ef4444 !important; border-radius: 12px; color: var(--lilas-botao) !important; }
+/* ========================================================
+   TOASTS (Notificações)
+======================================================== */
+.toast-success { 
+  background-color: var(--roxo-principal) !important; 
+  border-radius: 12px; 
+  color: var(--lilas-botao) !important; 
+}
+.toast-error { 
+  background-color: #ef4444 !important; 
+  border-radius: 12px; 
+  color: var(--lilas-botao) !important; 
+}
 .toast-container .ngx-toastr {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   font-family: 'Poppins', sans-serif;
