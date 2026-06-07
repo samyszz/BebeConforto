@@ -17,7 +17,7 @@ export class Api {
   }
 // Busca apenas um produto específico pelo ID dele
   getProduto(id: string) {
-    return this.http.get<any>(`https://bebeconforto-production.up.railway.app/api${id}`);
+    return this.http.get<any>(`https://bebeconforto-production.up.railway.app${id}`);
   }
 
 }
