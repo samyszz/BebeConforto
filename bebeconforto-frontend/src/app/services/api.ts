@@ -10,14 +10,12 @@ export class Api {
 
   constructor(private http: HttpClient) { }
 
-  // Verifique se o nome é exatamente este
   getVitrine(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/produtos`);
-
   }
-// Busca apenas um produto específico pelo ID dele
+
+  // AGORA SIM, USANDO A URL DO RAILWAY:
   getProduto(id: string) {
-    return this.http.get<any>(`https://bebeconforto-production.up.railway.app${id}`);
+    return this.http.get<any>(`${this.apiUrl}/produtos/${id}`);
   }
-
 }
