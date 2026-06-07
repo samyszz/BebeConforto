@@ -85,3 +85,34 @@
 .action-btn:hover {
   color: var(--amarelo-hover);
 }
+/* =========================================
+   RESPONSIVIDADE - HEADER
+========================================== */
+
+@media (max-width: 1024px) {
+  .search-bar {
+    width: 30%; /* Reduz a barra de pesquisa no tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column; /* Empilha: Logo, depois Busca, depois Botões */
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .logo-img {
+    height: 40px; /* Logo um pouco menor */
+  }
+
+  .search-bar {
+    width: 100%; /* Barra de pesquisa ocupa toda a largura no celular */
+  }
+
+  .actions-area {
+    width: 100%;
+    justify-content: space-around; /* Espalha os botões (Login/Carrinho) por igual */
+    gap: 0;
+  }
+}

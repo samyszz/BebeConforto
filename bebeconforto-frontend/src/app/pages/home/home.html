@@ -109,16 +109,24 @@
         </div>
       </aside>
 
-      <section class="grid-resultados">
-        <div class="produtos-grid">
-          @for (p of produtosFiltrados; track $index) {
-            
-            <div class="produto-card" [routerLink]="['/produto', p.id]" style="cursor: pointer;">
-              <button class="btn-favorito"><i class="mgc_star_line"></i></button>
-              <img [src]="p.imagemUrl" [alt]="p.nome" class="produto-img" style="object-fit: cover;">
-              <h4 class="produto-titulo">{{ p.nome }}</h4>
-              <span class="produto-preco">R$ {{ p.preco.toFixed(2) }}</span>
-            </div>
+<div class="produtos-grid">
+      @for (p of produtosFiltrados.slice(0, limiteDestaques); track $index) {
+        <div class="produto-card" [routerLink]="['/produto', p.id]" style="cursor: pointer;">
+          <button class="btn-favorito"><i class="mgc_star_line"></i></button>
+          <img [src]="p.imagemUrl" [alt]="p.nome" class="produto-img" style="object-fit: cover;">
+          <h4 class="produto-titulo">{{ p.nome }}</h4>
+          <span class="produto-preco">R$ {{ p.preco.toFixed(2) }}</span>
+        </div>
+      }
+    </div>
+
+    @if (produtosFiltrados.length > limiteDestaques) {
+      <div class="ver-mais-container" style="display: flex; justify-content: center; margin-top: 2rem; margin-bottom: 2rem;">
+        <button (click)="verMais()" style="padding: 12px 24px; background-color: var(--roxo-principal, #9f7aea); color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.3s;">
+          Ver mais produtos <i class="mgc_down_line"></i>
+        </button>
+      </div>
+    }
 
           } @empty {
             <div class="busca-vazia">

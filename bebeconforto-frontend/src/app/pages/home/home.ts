@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; 
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
-import { RouterModule, Router } from '@angular/router'; // <-- 1. Router adicionado aqui
+import { RouterModule, Router } from '@angular/router';
 import { Api } from '../../services/api';
 import { BuscaService } from '../../services/busca.service';
 
@@ -12,7 +12,7 @@ import { BuscaService } from '../../services/busca.service';
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
-export class Home implements OnInit {
+export class Home implements OnInit, OnDestroy {
   slides = ['slide1.png', 'slide2.png', 'slide3.png'];
   currentIndex = 0;
   
@@ -26,11 +26,15 @@ export class Home implements OnInit {
   categoriasSidebar: string[] = ['Alimentação', 'Higiene', 'Passeio', 'Roupinhas'];
   categoriasSelecionadas: string[] = []; 
 
+  // --- VARIÁVEIS NOVAS (Controle do Ver Mais e Carrossel) ---
+  limiteDestaques: number = 12; 
+  slideInterval: any; 
+
   constructor(
     private api: Api, 
     private buscaService: BuscaService,
     private cdr: ChangeDetectorRef,
-    private router: Router // <-- 2. Injetado aqui para podermos mudar de página
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -44,6 +48,26 @@ export class Home implements OnInit {
     });
 
     this.carregarProdutos();
+    this.iniciarCarrossel(); // Inicia o giro automático do slider
+  }
+
+  // --- DESLIGA O CARROSSEL AO SAIR DA PÁGINA ---
+  ngOnDestroy() {
+    if (this.slideInterval) {
+      clearInterval(this.slideInterval);
+    }
+  }
+
+  // --- CARROSSEL AUTOMÁTICO ---
+  iniciarCarrossel() {
+    this.slideInterval = setInterval(() => {
+      this.proximoSlide();
+    }, 4000); // Troca de foto a cada 4 segundos
+  }
+
+  // --- BOTÃO VER MAIS ---
+  verMais() {
+    this.limiteDestaques += 12; 
   }
 
   carregarProdutos(): void {
@@ -93,7 +117,7 @@ export class Home implements OnInit {
     // Atualiza a variável que vai para o HTML
     this.produtosFiltrados = filtrados;
 
-    // 3. A MÁGICA: Manda o Angular desenhar a tela agora mesmo, na marra!
+    // 3. A MÁGICA: Manda o Angular desenhar a tela agora mesmo
     this.cdr.detectChanges(); 
   }
 
@@ -119,15 +143,11 @@ export class Home implements OnInit {
     this.aplicarFiltros(); 
   }
   
-  // --- FUNÇÃO NOVA PARA AS COLEÇÕES ---
   irParaCategoria(categoria: string) {
-    // Atualiza o termo de busca no serviço
     this.buscaService.atualizarBusca(categoria);
-    // Redireciona para a página de resultados da busca
     this.router.navigate(['/busca']);
   }
 
-  // --- SLIDER ---
   proximoSlide() {
     this.currentIndex = (this.currentIndex + 1) % this.slides.length;
   }
