@@ -1,0 +1,75 @@
+<main class="busca-container">
+  
+  <div class="busca-header">
+    <div class="busca-titulos">
+      <h1 class="titulo-resultados">Resultados para <span class="destaque">"{{ termoBusca }}"</span></h1>
+      <span class="subtitulo-resultados">{{ produtosFiltrados.length }} produtos encontrados</span>
+    </div>
+    
+    <div class="busca-ordenar">
+      <label for="ordenar">Ordenar por:</label>
+      <div class="select-wrapper">
+        <span class="mgc_down_line icone-select"></span>
+        <select id="ordenar" class="select-ordenar" [(ngModel)]="ordenacaoAtual" (change)="aplicarFiltros()">
+          <option value="Relevância">Relevância</option>
+          <option value="Menor Preço">Menor Preço</option>
+          <option value="Maior Preço">Maior Preço</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="busca-conteudo">
+    <aside class="busca-filtros">
+      
+      <div class="filtro-grupo">
+        <h3 class="filtro-titulo">Categorias</h3>
+        
+        @for (cat of categoriasSidebar; track $index) {
+          @if (contarPorCategoria(cat) > 0) {
+            <label class="filtro-checkbox">
+              <input type="checkbox" (change)="atualizarCheckbox(cat, $event)">
+              <span class="checkmark"></span>
+              {{ cat }} ({{ contarPorCategoria(cat) }})
+            </label>
+          }
+        }
+      </div>
+
+      <hr class="filtro-divisor">
+
+      <div class="filtro-grupo">
+        <h3 class="filtro-titulo">Preço</h3>
+        <div class="range-slider">
+          <input type="range" min="0" max="1000" class="slider">
+        </div>
+      </div>
+      
+    </aside>
+
+    <section class="busca-grid">
+      
+      @for (p of produtosFiltrados; track $index) {
+        
+        <div class="busca-card" [routerLink]="['/produto', p.id]" style="cursor: pointer; position: relative;">
+          <button class="btn-favorito" style="position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 20px; color: #d1d5db;"><i class="mgc_star_line"></i></button>
+          
+          <img [src]="p.imagemUrl" [alt]="p.nome" class="card-img" style="object-fit: cover; border-radius: 8px;">
+          <h4 class="card-titulo">{{ p.nome }}</h4>
+          <span class="card-preco">R$ {{ p.preco.toFixed(2) }}</span>
+        </div>
+
+      } @empty {
+        
+        <div class="busca-vazia" style="text-align: center; padding: 60px 20px; grid-column: 1 / -1;">
+          <i class="mgc_ghost_line icone-vazio" style="font-size: 3.5rem; color: #d8c4e8;"></i>
+          <p style="color: #6b1fad; font-size: 1.2rem; margin-top: 15px;">
+            Poxa, não encontramos produtos para "{{ termoBusca }}".
+          </p>
+        </div>
+
+      }
+      
+    </section>
+  </div>
+</main>

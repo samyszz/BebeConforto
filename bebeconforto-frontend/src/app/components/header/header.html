@@ -1,0 +1,36 @@
+<header class="header-container">
+  
+  <div class="logo-area">
+    <img src="assets/logo.png" alt="Bebê Conforto" class="logo-img">
+  </div>
+
+  <div class="search-bar">
+    <i class="mgc_search_line search-icon"></i>
+    <input 
+      type="text" 
+      class="search-input" 
+      placeholder="O que você está procurando?" 
+      [(ngModel)]="termoDigitado" 
+      (ngModelChange)="aoDigitar()"> 
+  </div>
+
+<nav class="actions-area">
+    
+    <button *ngIf="!isLoggedIn()" routerLink="/login" class="action-btn" style="text-decoration: none; border: none; background: transparent; cursor: pointer;">
+      <i class="mgc_user_3_line"></i>
+      <span>Entrar</span>
+    </button>
+
+    <button *ngIf="isLoggedIn()" routerLink="/perfil" class="action-btn" style="text-decoration: none; border: none; background: transparent; cursor: pointer;">
+      <i class="mgc_user_3_line"></i>
+      <span>Conta</span>
+    </button>
+
+    <button routerLink="/carrinho" class="action-btn" style="text-decoration: none; border: none; background: transparent; cursor: pointer;">
+      <i class="mgc_baby_carriage_line"></i>
+      <span>Carrinho</span>
+    </button>
+    
+</nav>
+
+</header>

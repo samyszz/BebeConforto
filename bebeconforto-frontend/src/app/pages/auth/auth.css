@@ -1,0 +1,238 @@
+/* Fundo que centraliza o formulário na tela inteira */
+.auth-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  padding: 40px;
+}
+
+/* Container Principal do Slider */
+.auth-container {
+  background-color: #ffffff;
+  border-radius: 40px; 
+  box-shadow: 0 14px 28px rgba(0,0,0,0.05), 0 10px 10px rgba(0,0,0,0.02);
+  position: relative;
+  overflow: hidden;
+  width: 900px;
+  max-width: 100%;
+  min-height: 550px;
+}
+
+/* Área onde ficam os formulários */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.auth-form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+.auth-form h1 {
+  color: var(--roxo-principal);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* --- Estilização dos Inputs --- */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--roxo-principal);
+  font-size: 24px;
+}
+
+.input-wrapper input {
+  background-color: var(--fundo-pesquisa); 
+  border: 1px solid var(--roxo-claro);     
+  border-radius: 15px;
+  padding: 18px 20px 18px 60px; 
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--roxo-principal);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--roxo-principal);
+}
+
+.input-wrapper input::placeholder {
+  color: rgba(107, 31, 173, 0.48); 
+}
+
+/* --- Esqueci a Senha e Links --- */
+.esqueci-senha-area {
+  margin: 10px 0 25px 0;
+}
+
+.esqueci-texto {
+  color: var(--roxo-principal);
+  font-size: 14px;
+}
+
+.clique-aqui {
+  color: var(--roxo-principal);
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recuperar-dica {
+  color: var(--texto-padrao);
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+/* --- Estilização dos Botões --- */
+.btn-auth {
+  background-color: var(--roxo-principal);
+  color: #ffffff; 
+  border: none;
+  border-radius: 25px;
+  padding: 15px 50px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.3s;
+}
+
+.btn-auth:hover {
+  opacity: 0.9;
+}
+
+.btn-auth:active {
+  transform: scale(0.95);
+}
+
+/* --- Container da Animação de Deslize --- */
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+  border-radius: 50% 0 0 50%; 
+}
+
+.overlay {
+  background-color: var(--roxo-claro); 
+  color: var(--roxo-principal);
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Os dois lados do painel (Overlay) */
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.overlay-titulo {
+  color: var(--roxo-principal);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.overlay-icone-topo {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+/* ========================================================
+   MAGICA DO SLIDER
+   ======================================================== */
+.auth-container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+.auth-container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.auth-container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+  border-radius: 0 50% 50% 0; 
+}
+
+.auth-container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.auth-container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.auth-container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}

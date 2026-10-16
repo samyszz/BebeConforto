@@ -1,0 +1,60 @@
+<div class="carrinho-container">
+  <h1 class="titulo-roxo">Meu Carrinho</h1>
+
+  <div *ngIf="itens.length === 0" class="carrinho-vazio">
+    <p>Ah não, seu carrinho está vazio!</p>
+    <button class="btn-voltar-compras" routerLink="/">Voltar às compras</button>
+  </div>
+
+  <div *ngIf="itens.length > 0" class="carrinho-layout">
+    
+    <div class="lista-itens">
+      <div class="item-card" *ngFor="let item of itens">
+        <div class="item-info">
+          <span class="item-nome">{{ item.produto.nome }}</span>
+          <span class="item-preco">R$ {{ item.produto.preco.toFixed(2) }}</span>
+        </div>
+        
+        <div class="item-controles">
+          <button class="btn-qtd" (click)="diminuirQtd(item)">-</button>
+          <span class="qtd-valor">{{ item.quantidade }}</span>
+          <button class="btn-qtd" (click)="aumentarQtd(item)">+</button>
+          <button class="btn-remover" (click)="remover(item)"><i class="mgc_delete_line"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="resumo-pedido">
+      <h3>Resumo do Pedido</h3>
+      <div class="total-linha">
+        <span>Total:</span>
+        <span class="total-valor">R$ {{ total.toFixed(2) }}</span>
+      </div>
+      <button class="btn-finalizar" (click)="abrirModal()">Prosseguir para Pagamento</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-overlay" *ngIf="mostrarModal">
+  <div class="modal-conteudo">
+    <button class="btn-fechar-modal" (click)="fecharModal()">X</button>
+    
+    <h2 class="titulo-modal">Forma de Pagamento</h2>
+    <p class="subtitulo-modal">Falta pouco! Como deseja pagar os <strong>R$ {{ total.toFixed(2) }}</strong>?</p>
+    
+    <div class="opcoes-pagamento">
+      <button class="btn-opcao" [class.ativo]="metodoPagamento === 'Boleto'" (click)="selecionarPagamento('Boleto')">
+        📄 Boleto
+      </button>
+      <button class="btn-opcao" [class.ativo]="metodoPagamento === 'Débito'" (click)="selecionarPagamento('Débito')">
+        💳 Débito
+      </button>
+      <button class="btn-opcao" [class.ativo]="metodoPagamento === 'Crédito'" (click)="selecionarPagamento('Crédito')">
+        💳 Crédito
+      </button>
+    </div>
+
+    <button class="btn-confirmar" (click)="finalizarCompra()">Finalizar Compra</button>
+  </div>
+</div>

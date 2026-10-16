@@ -1,0 +1,249 @@
+.perfil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif; /* Ajuste para a sua fonte */
+}
+
+.titulo-conta {
+  color: #5b21b6; /* Roxo escuro */
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.card-conta {
+  background-color: #e0e7ff; /* Azul bem clarinho (pastel) */
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.info-linha {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.info-label {
+  color: #5b21b6;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.info-valor {
+  color: #4b5563;
+  flex-grow: 1;
+}
+
+.icone-editar {
+  color: #5b21b6;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.botoes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.btn-roxo {
+  background-color: #6d28d9; /* Roxo Bebê Conforto */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-roxo:hover {
+  background-color: #5b21b6;
+}
+
+.btn-voltar {
+  margin-top: 40px;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #5b21b6;
+  padding: 10px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-voltar:hover {
+  background-color: #dbeafe;
+}
+
+
+/* Adicione no final do arquivo */
+
+.input-edicao {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 2px solid #bfdbfe; /* Azul pastel */
+  border-radius: 8px; /* Cantos arredondados */
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #4b5563;
+  background-color: rgba(255, 255, 255, 0.7); /* Efeito glass/soft */
+}
+
+.input-edicao:focus {
+  border-color: #6d28d9; /* Roxo ao focar */
+}
+
+.btn-salvar-pequeno {
+  background-color: #6d28d9; /* Mantendo a identidade visual */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-left: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+
+.btn-salvar-pequeno:hover {
+  opacity: 0.8;
+}
+/* --- SESSÃO DE PEDIDOS --- */
+.sessao-pedidos {
+  margin-top: 30px;
+  border-top: 2px dashed #bfdbfe; /* Linha sutil separando */
+  padding-top: 25px;
+  width: 100%;
+}
+
+.titulo-pedidos {
+  color: #5b21b6;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.sem-pedidos {
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.card-pedido {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-left: 5px solid #6d28d9; /* Destaque roxo lateral */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.pedido-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.pedido-id {
+  font-weight: bold;
+  color: #5b21b6;
+}
+
+.pedido-data {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.pedido-corpo p {
+  margin: 5px 0;
+  color: #4b5563;
+}
+
+.pedido-itens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.badge-item {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+/* --- SESSÃO DE FAVORITOS --- */
+.card-favorito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid #f472b6; /* Rosa suave para favoritos */
+}
+
+.fav-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.fav-nome {
+  font-weight: bold;
+  font-size: 18px;
+  color: #4b5563;
+}
+
+.fav-preco {
+  color: #6d28d9;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.fav-acoes {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-ver {
+  background-color: #e0e7ff;
+  color: #5b21b6;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ver:hover {
+  background-color: #c7d2fe;
+}
+
+.btn-remover-fav {
+  background-color: #fee2e2; /* Fundo vermelho pastel */
+  color: #ef4444; /* Texto vermelho suave */
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-remover-fav:hover {
+  background-color: #fca5a5;
+}

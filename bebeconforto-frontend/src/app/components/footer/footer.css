@@ -1,0 +1,80 @@
+.footer-container {
+  /* Fundo #d1dfff com 59% de opacidade */
+  background-color: rgba(209, 223, 255, 0.59);
+  color: var(--roxo-principal);
+  padding: 40px 60px 20px 60px;
+  font-family: inherit;
+  margin-top: auto; /* Garante que o footer fique no final da página */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* --- Links Úteis --- */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: var(--roxo-principal);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--amarelo-hover);
+}
+
+/* --- Logo --- */
+.footer-logo img {
+  height: 60px; /* Ajuste conforme necessário */
+  object-fit: contain;
+}
+
+/* --- Redes Sociais --- */
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-social span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: var(--roxo-principal);
+  font-size: 28px;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--amarelo-hover);
+  transform: translateY(-3px); /* Pequeno efeito de elevação ao passar o mouse */
+}
+
+/* --- Direitos Autorais --- */
+.footer-copyright {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  border-top: 1px solid rgba(107, 31, 173, 0.15); /* Linha divisória bem sutil */
+  padding-top: 20px;
+  color: var(--roxo-principal);
+}

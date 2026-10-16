@@ -1,0 +1,87 @@
+@if (produto) {
+  <main class="detalhe-container">
+    
+    <nav class="breadcrumb">
+      <a routerLink="/">Início</a> 
+      <i class="mgc_right_line breadcrumb-seta"></i> 
+      <a (click)="voltarRotaAnterior()" style="cursor: pointer;">{{ produto.categoria }}</a> 
+      <i class="mgc_right_line breadcrumb-seta"></i> 
+      <span class="pagina-atual">{{ produto.nome }}</span>
+    </nav>
+
+    <div class="produto-main">
+      
+      <section class="produto-imagem-wrapper">
+        <img [src]="produto.imagemUrl" [alt]="produto.nome" class="produto-img-principal">
+      </section>
+
+      <section class="produto-info">
+        
+        <div>
+          <h1 class="produto-titulo">{{ produto.nome }}</h1>
+          <div class="produto-avaliacao">
+            <div class="estrelas">
+              <i class="mgc_star_fill"></i><i class="mgc_star_fill"></i><i class="mgc_star_fill"></i>
+              <i class="mgc_star_line"></i><i class="mgc_star_line"></i>
+            </div>
+            <span class="avaliacao-texto">(228 Avaliações)</span>
+          </div>
+        </div>
+
+        <div class="produto-preco-area">
+          <h2 class="preco-destaque">R$ {{ produto.preco.toFixed(2) }}</h2>
+          <p class="preco-parcela">Em até 10 vezes de R$ {{(produto.preco / 10).toFixed(2)}} sem juros</p>
+        </div>
+
+        <div class="seletores-area">
+          <div class="seletor-grupo">
+            <span class="seletor-label">Cor</span>
+            <div class="seletor-container cor-container">
+              <button class="cor-btn amarela"></button>
+              <button class="cor-btn marrom"></button>
+              <button class="cor-btn roxa"></button>
+            </div>
+          </div>
+
+          <div class="seletor-grupo">
+            <span class="seletor-label">Quantidade</span>
+            <div class="seletor-container qtd-container">
+              <button class="qtd-btn" (click)="alterarQuantidade(-1)">-</button>
+              <span>{{ quantidade }}</span>
+              <button class="qtd-btn" (click)="alterarQuantidade(1)">+</button>
+            </div>
+          </div>
+        </div>
+
+   <div class="botoes-acao">
+          <button class="btn-adicionar-carrinho" (click)="adicionarAoCarrinho()">
+            <i class="mgc_shopping_cart_2_line"></i> Adicionar ao carrinho
+          </button>
+          
+          <button 
+            class="btn-adicionar-favoritos" 
+            [class.ativo]="isFavorito" 
+            (click)="favoritar()">
+            
+            <i class="icon-roxo" [ngClass]="isFavorito ? 'mgc_star_fill' : 'mgc_star_line'"></i>
+            {{ isFavorito ? 'Salvo nos favoritos' : 'Adicionar aos favoritos' }}
+            
+          </button>
+        </div>
+
+      </section>
+    </div>
+
+    <section class="produto-descricao">
+      <h3>Descrição do produto</h3>
+      <ul>
+        <li>{{ produto.descricao }}</li>
+      </ul>
+    </section>
+
+  </main>
+} @else {
+  <div class="carregando">
+    <p>Preparando os detalhes do produto...</p>
+  </div>
+}

@@ -1,0 +1,91 @@
+<div class="perfil-container">
+  <h1 class="titulo-conta">Minha Conta</h1>
+
+  <div class="card-conta">
+    
+    <div class="info-linha">
+      <span class="info-label">Nome do Usuário:</span>
+      <ng-container *ngIf="!editandoNome">
+        <span class="info-valor">{{ nomeUsuario }}</span>
+        <i class="mgc_edit_line icone-editar" (click)="editandoNome = true" title="Editar nome"></i>
+      </ng-container>
+      <ng-container *ngIf="editandoNome">
+        <input class="input-edicao" type="text" [(ngModel)]="nomeUsuario">
+        <button class="btn-salvar-pequeno" (click)="salvarNome()">Salvar</button>
+      </ng-container>
+    </div>
+
+    <div class="info-linha">
+      <span class="info-label">Telefone para contato:</span>
+      <ng-container *ngIf="!editandoTelefone">
+        <span class="info-valor">{{ telefone }}</span>
+        <i class="mgc_edit_line icone-editar" (click)="editandoTelefone = true" title="Editar telefone"></i>
+      </ng-container>
+      <ng-container *ngIf="editandoTelefone">
+        <input class="input-edicao" type="text" [(ngModel)]="telefone">
+        <button class="btn-salvar-pequeno" (click)="salvarTelefone()">Salvar</button>
+      </ng-container>
+    </div>
+
+    <div class="botoes-container">
+      
+      <button class="btn-roxo" (click)="alternarFavoritos()">
+        {{ mostrarFavoritos ? 'Ocultar favoritos' : 'Acessar favoritos' }}
+      </button>
+      
+      <button class="btn-roxo" (click)="alternarPedidos()">
+        {{ mostrarPedidos ? 'Ocultar meus pedidos' : 'Acessar pedidos' }}
+      </button>
+      
+      <button class="btn-roxo" (click)="sair()">Sair</button>
+    </div>
+
+    <div class="sessao-pedidos" *ngIf="mostrarFavoritos">
+      <h2 class="titulo-pedidos">Meus Favoritos</h2>
+
+      <div *ngIf="favoritos.length === 0" class="sem-pedidos">
+        <p>Você ainda não tem nenhum produto favoritado.</p>
+      </div>
+
+      <div class="card-pedido card-favorito" *ngFor="let fav of favoritos">
+        <div class="fav-info">
+          <span class="fav-nome">{{ fav.nome }}</span>
+          <span class="fav-preco">R$ {{ fav.preco.toFixed(2) }}</span>
+        </div>
+        <div class="fav-acoes">
+          <button class="btn-ver" [routerLink]="['/produto', fav.id]">Ver Produto</button>
+          <button class="btn-remover-fav" (click)="removerFavorito(fav.id)">Remover</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sessao-pedidos" *ngIf="mostrarPedidos">
+      <h2 class="titulo-pedidos">Histórico de Compras</h2>
+
+      <div *ngIf="pedidos.length === 0" class="sem-pedidos">
+        <p>Você ainda não tem pedidos finalizados.</p>
+      </div>
+
+      <div class="card-pedido" *ngFor="let pedido of pedidos">
+        <div class="pedido-cabecalho">
+          <span class="pedido-id">Pedido #{{ pedido.id }}</span>
+          <span class="pedido-data">{{ pedido.data }}</span>
+        </div>
+        <div class="pedido-corpo">
+          <p><strong>Pagamento:</strong> {{ pedido.metodoPagamento }}</p>
+          <p><strong>Total:</strong> R$ {{ pedido.total.toFixed(2) }}</p>
+          <div class="pedido-itens">
+            <span class="badge-item" *ngFor="let item of pedido.itens">
+              {{ item.quantidade }}x {{ item.produto.nome }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="btn-voltar" routerLink="/">
+    &lt; &nbsp; Voltar a tela inicial
+  </button>
+</div>

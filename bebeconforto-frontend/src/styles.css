@@ -1,0 +1,66 @@
+/* Importando a fonte Poppins e a biblioteca Mingcute Icons */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/mingcute_icon@2.0.0/font/Mingcute.css');
+@import "./assets/toastr.css";
+
+/* Variáveis de cores para um design acolhedor e profissional */
+:root {
+  --roxo-principal: #6b1fad;
+  --roxo-claro: #d1dfff;
+  --fundo-site: #f0f7ff;
+  --fundo-pesquisa: #f1f5ff;
+  --amarelo-hover: #896ca9;
+  --texto-padrao: #6d6474;
+  --lilas-botao: #f4e7ff;
+}
+
+body {
+  background-color: var(--fundo-site);
+  font-family: 'Poppins', sans-serif;
+  color: var(--texto-padrao);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================================
+   CONTROLE DOS ÍCONES (A MÁGICA DA HERANÇA)
+======================================================== */
+/* O color: inherit faz com que o ícone copie a cor do texto do elemento pai.
+   Isso resolve o problema de ícones pretos em botões lilás ou roxos. */
+[class^="mgc_"], [class*=" mgc_"],
+[class^="mgc_"]::before, [class*=" mgc_"]::before {
+  color: inherit !important;
+  transition: color 0.3s ease;
+}
+
+/* Garante que o hover funcione para o ícone junto com o texto */
+button:hover [class^="mgc_"], 
+button:hover [class^="mgc_"]::before,
+a:hover [class^="mgc_"], 
+a:hover [class^="mgc_"]::before {
+  color: inherit !important;
+}
+
+/* Exceção: As estrelas de avaliação (sempre amarelas) */
+.estrelas .mgc_star_fill::before, .estrelas .mgc_star_fill {
+  color: var(--amarelo-hover) !important;
+}
+
+/* ========================================================
+   TOASTS (Notificações)
+======================================================== */
+.toast-success { 
+  background-color: var(--roxo-principal) !important; 
+  border-radius: 12px; 
+  color: var(--lilas-botao) !important; 
+}
+.toast-error { 
+  background-color: #ef4444 !important; 
+  border-radius: 12px; 
+  color: var(--lilas-botao) !important; 
+}
+.toast-container .ngx-toastr {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif;
+}

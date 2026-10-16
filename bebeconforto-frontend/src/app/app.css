@@ -1,0 +1,15 @@
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%; /* Garante espaço para duplicar os itens e não deixar espaço branco */
+  animation: marquee 20s linear infinite;
+}
+
+/* Pausa a animação quando o usuário passa o mouse por cima */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
